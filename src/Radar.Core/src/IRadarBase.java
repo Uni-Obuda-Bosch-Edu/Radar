@@ -1,2 +1,3 @@
-public interface IRadarBase {
+public interface IRadarBase
+{
 }

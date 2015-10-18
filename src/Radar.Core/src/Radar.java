@@ -40,7 +40,8 @@ public class Radar
         _messagePump.cancel();
     }
 
-    private void Signal(){
+    private void Signal()
+    {
 
     }
 }
