@@ -1,111 +1,95 @@
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 import virtualDataBus.Container;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.lang.Math;
+import static oracle.jrockit.jfr.events.Bits.doubleValue;
 
-public class Radar
-{
+
+
+public class Radar {
     public static final int BUS_READ_PERIOD_SEC = 1;
 
     private final Container _container;
     private final IRadarBase _radarBase;
     private final Timer _messagePump;
 
-    public Radar(Container container)
-    {
+    public Radar(Container container) {
         _container = container;
         _radarBase = new RadarBase(_container, _container);
         _messagePump = new Timer();
     }
 
-    public Radar(Container container, IRadarBase radarBase)
-    {
+    public Radar(Container container, IRadarBase radarBase) {
         _container = container;
         _radarBase = radarBase;
         _messagePump = new Timer();
     }
 
-    public void Connect()
-    {
+    public void Connect() {
         _messagePump.schedule(new TimerTask() {
             @Override
             public void run() {
                 Signal();
             }
-        }, BUS_READ_PERIOD_SEC *1000);
+        }, BUS_READ_PERIOD_SEC * 1000);
     }
 
-    public void Disconnect()
-    {
+    public void Disconnect() {
         _messagePump.cancel();
     }
 
-    private void Signal()
-    {
+    private void Signal() {
 
     }
 
 
-    public Pair GetCarPosition(){
-        Pair coordinates;
-        coordinates.setFirst(10);
-        coordinates.setSecond(10);
+    public Point GetCarPosition() {
+        //dummy adat, majd lekérdezzük a bus-ról a pontos értéket
+        Point coordinates=new Point(10,10);
         return coordinates;
     }
 
-    public Pair
-}
+    public Point SetRadarPosition(Point CarPosition){
+      
+        return new Point(CarPosition.x, CarPosition.y+2);
+   }
 
-public class Pair<X, Y> {
-    private X first;
-    private Y second;
-
-    public Pair(X first, Y second) {
-        super();
-        this.first = first;
-        this.second = second;
+    //getobjectsbytriangle
+    public List<Point> SetTriangle(){
+        Point radarposition=SetRadarPosition(GetCarPosition());
+        List<Point>TriangleCoordinates=new ArrayList<>();
+        //A - radar pozi
+        TriangleCoordinates.add(radarposition); 
+        //B - bal felső sarok
+        TriangleCoordinates.add(new Point(radarposition.x-10, radarposition.y+10)); 
+        //C - jobb felső sarok
+        TriangleCoordinates.add(new Point(radarposition.x+10, radarposition.y+10));
+              
+        return TriangleCoordinates;
     }
 
-    public int hashCode() {
-        int hashFirst = first != null ? first.hashCode() : 0;
-        int hashSecond = second != null ? second.hashCode() : 0;
-
-        return (hashFirst + hashSecond) * hashSecond + hashFirst;
-    }
-
-    public boolean equals(Object other) {
-        if (other instanceof Pair) {
-            Pair otherPair = (Pair) other;
-            return
-                    ((  this.first == otherPair.first ||
-                            ( this.first != null && otherPair.first != null &&
-                                    this.first.equals(otherPair.first))) &&
-                            (	this.second == otherPair.second ||
-                                    ( this.second != null && otherPair.second != null &&
-                                            this.second.equals(otherPair.second))) );
+    //eldöntöm melyik van a legközelebb
+    //most csak koordinátákkal dolgozom, később átírni a világtól kapott objektumoknak megfelelően
+    public Point GetNearestObject(List<Point> objects){
+        Point CarPosition= GetCarPosition();
+        Point first=objects.get(0);
+        double min=Math.sqrt(Math.pow(doubleValue(first.y-CarPosition.y),2)+Math.pow(doubleValue(first.x-CarPosition.x),2));
+        int idx=0;
+        
+        for(int i=0; i<objects.size(); i++){
+            double distance=Math.sqrt(Math.pow(doubleValue(objects.get(i).y-CarPosition.y),2)+Math.pow(doubleValue(objects.get(i).x-CarPosition.x),2));
+            if(distance<min){
+                min=distance;
+                idx=i;
+            }
         }
-
-        return false;
+        
+        return objects.get(idx);
     }
-
-    public String toString()
-    {
-        return "(" + first + ", " + second + ")";
-    }
-
-    public X getFirst() {
-        return first;
-    }
-
-    public void setFirst(X first) {
-        this.first = first;
-    }
-
-    public Y getSecond() {
-        return second;
-    }
-
-    public void setSecond(Y second) {
-        this.second = second;
-    }
+    
 }
+
