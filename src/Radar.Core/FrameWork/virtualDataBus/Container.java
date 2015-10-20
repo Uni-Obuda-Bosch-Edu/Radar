@@ -2,8 +2,20 @@ package virtualDataBus;
 
 import busInterface.*;
 
-public class Container implements Engine_Out, DriverInput_Out, Gearbox_Out, Wheels_Out, Public_In{
-	
+import java.awt.*;
+import java.util.List;
+
+public class Container implements Engine_Out, Radar_Out, DriverInput_Out, Gearbox_Out, Wheels_Out, Public_In{
+
+	public void setRadarDetectedObject(Point nearestObjectPosition, Double relativeSpeed) {
+		NearestObjectPosition = nearestObjectPosition;
+		RelativeSpeed = relativeSpeed;
+	}
+
+	public void setObjectsbyTriangle(List<Point> objectsbyTriangle) {
+		ObjectsbyTriangle = objectsbyTriangle;
+	}
+
 	public enum ShiftLeverPosition {Parking, Reverse, Neutral, Break}
 	
 	public static Container getInstance(){
@@ -14,6 +26,18 @@ public class Container implements Engine_Out, DriverInput_Out, Gearbox_Out, Whee
 
 	public boolean getEngineToggleButtonState() {
 		return EngineToggleButtonState;
+	}
+
+	public Point getNearestObject() {
+		return NearestObjectPosition;
+	}
+
+	public double getRelativeSpeed() {
+		return RelativeSpeed;
+	}
+
+	public List<Point> getObjectsbyTriangle() {
+		return ObjectsbyTriangle;
 	}
 
 	public void setEngineToggleButtonState(boolean buttonState) {
@@ -311,6 +335,11 @@ public class Container implements Engine_Out, DriverInput_Out, Gearbox_Out, Whee
 	private double OilTemperature;
 	private double OilPressure;
 	private int ServiceCode;
+
+	/*Radar*/
+	private Point NearestObjectPosition;
+	private double RelativeSpeed;
+	private List<Point> ObjectsbyTriangle;
 	
 	/*Wheels*/
 	private double CenterOfXAxis;

@@ -1,12 +1,19 @@
 package busInterface;
 
+import java.awt.*;
+import java.util.List;
+
 public interface Public_In {
 	
 	public double getSteeringWheelSignedPercentage();
 	public double getBrakePedalPercentage();
 	public double getGasPedalPercentage();
 	public boolean getEngineToggleButtonState();
-	
+
+	public Point getNearestObject();
+	public double getRelativeSpeed();
+	public List<Point> getObjectsbyTriangle();
+
 	public int getCurrentGear();
 	public int getMaxGear();
 	public int getShiftLeverPosition();
