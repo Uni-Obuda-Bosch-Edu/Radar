@@ -12,7 +12,7 @@ public interface Public_In {
 
 	public Point getNearestObject();
 	public double getRelativeSpeed();
-	public List<Point> getObjectsbyTriangle();
+	public List<Point> getObjectsByTriangle();
 
 	public int getCurrentGear();
 	public int getMaxGear();

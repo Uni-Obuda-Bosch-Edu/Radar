@@ -12,8 +12,8 @@ public class Container implements Engine_Out, Radar_Out, DriverInput_Out, Gearbo
 		RelativeSpeed = relativeSpeed;
 	}
 
-	public void setObjectsbyTriangle(List<Point> objectsbyTriangle) {
-		ObjectsbyTriangle = objectsbyTriangle;
+	public void setObjectsByTriangle(List<Point> objectsByTriangle) {
+		ObjectsByTriangle = objectsByTriangle;
 	}
 
 	public enum ShiftLeverPosition {Parking, Reverse, Neutral, Break}
@@ -36,8 +36,8 @@ public class Container implements Engine_Out, Radar_Out, DriverInput_Out, Gearbo
 		return RelativeSpeed;
 	}
 
-	public List<Point> getObjectsbyTriangle() {
-		return ObjectsbyTriangle;
+	public List<Point> getObjectsByTriangle() {
+		return ObjectsByTriangle;
 	}
 
 	public void setEngineToggleButtonState(boolean buttonState) {
@@ -339,7 +339,7 @@ public class Container implements Engine_Out, Radar_Out, DriverInput_Out, Gearbo
 	/*Radar*/
 	private Point NearestObjectPosition;
 	private double RelativeSpeed;
-	private List<Point> ObjectsbyTriangle;
+	private List<Point> ObjectsByTriangle;
 	
 	/*Wheels*/
 	private double CenterOfXAxis;

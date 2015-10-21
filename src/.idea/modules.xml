@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Radar.Core/Radar.Core.iml" filepath="$PROJECT_DIR$/Radar.Core/Radar.Core.iml" />
       <module fileurl="file://$PROJECT_DIR$/Radar.Test/Radar.Test.iml" filepath="$PROJECT_DIR$/Radar.Test/Radar.Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Radar.Visualization/Radar.Visualization.iml" filepath="$PROJECT_DIR$/Radar.Visualization/Radar.Visualization.iml" />
     </modules>
   </component>
 </project>

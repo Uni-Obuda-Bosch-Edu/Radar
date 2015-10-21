@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface Radar_Out {
     void setRadarDetectedObject(Point nearestObjectPosition, Double relativeSpeed);
-    void setObjectsbyTriangle(List<Point> objectsbyTriangle);
+    void setObjectsByTriangle(List<Point> objectsByTriangle);
 }
