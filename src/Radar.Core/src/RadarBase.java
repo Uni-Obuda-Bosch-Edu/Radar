@@ -1,4 +1,3 @@
-import busInterface.Engine_Out;
 import busInterface.Public_In;
 import busInterface.Radar_Out;
 
@@ -27,8 +26,13 @@ public class RadarBase implements IRadarBase
         Point radarPosition = SetRadarPosition(GetCarPosition());
         List<Point> setTriangle = SetTriangle();
         Point nearestObjectPosition = GetNearestObject(GetRelevantObjects());
+
         _outBus.setObjectsByTriangle(setTriangle);
-        _outBus.setRadarDetectedObject(nearestObjectPosition, RelativeSpeedInKPH(radarPosition, nearestObjectPosition));
+
+        double relativeSpeed = RelativeSpeedInKPH(radarPosition, nearestObjectPosition);
+        if (!Double.isNaN(relativeSpeed)) {
+            _outBus.setRadarDetectedObject(nearestObjectPosition, relativeSpeed);
+        }
     }
 
     @Override
