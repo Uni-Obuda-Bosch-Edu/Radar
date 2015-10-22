@@ -2,8 +2,9 @@ import busInterface.Public_In;
 import busInterface.Radar_Out;
 
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
+
 import static oracle.jrockit.jfr.events.Bits.doubleValue;
 
 public class RadarBase implements IRadarBase
@@ -26,13 +27,12 @@ public class RadarBase implements IRadarBase
         Point radarPosition = SetRadarPosition(GetCarPosition());
         List<Point> setTriangle = SetTriangle();
         Point nearestObjectPosition = GetNearestObject(GetRelevantObjects());
-
         _outBus.setObjectsByTriangle(setTriangle);
-
+        //_outBus.setRadarDetectedObject(nearestObjectPosition, RelativeSpeedInKPH(radarPosition, nearestObjectPosition));
         double relativeSpeed = RelativeSpeedInKPH(radarPosition, nearestObjectPosition);
-        if (!Double.isNaN(relativeSpeed)) {
-            _outBus.setRadarDetectedObject(nearestObjectPosition, relativeSpeed);
-        }
+                if (!Double.isNaN(relativeSpeed)) {
+                       _outBus.setRadarDetectedObject(nearestObjectPosition, relativeSpeed);
+                   }
     }
 
     @Override
