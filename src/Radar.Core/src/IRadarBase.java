@@ -1,11 +1,12 @@
-import java.awt.Point;
+import Common.Point2D;
+
 import java.util.List;
 
 public interface IRadarBase
 {
     void Signal();
-    List<Point> SetTriangle();
-    Point SetRadarPosition(Point carPosition);
-    Point GetNearestObject(List<Point> objects);
-    double RelativeSpeedInKPH(Point radarPos, Point nearestPos);
+    List<Point2D> SetTriangle();
+    Point2D SetRadarPosition(Point2D carPosition);
+    List<Point2D> GetNearestObject(List<Point2D> objects);
+    double RelativeSpeedInKPH(Point2D radarPos, Point2D nearestPos);
 }

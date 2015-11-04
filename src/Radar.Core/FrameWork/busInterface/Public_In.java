@@ -1,6 +1,7 @@
 package busInterface;
 
-import java.awt.*;
+import Common.Point2D;
+
 import java.util.List;
 
 public interface Public_In {
@@ -10,9 +11,9 @@ public interface Public_In {
 	public double getGasPedalPercentage();
 	public boolean getEngineToggleButtonState();
 
-	public Point getNearestObject();
+	public Point2D getNearestObject();
 	public double getRelativeSpeed();
-	public List<Point> getObjectsByTriangle();
+	public List<Point2D> getObjectsByTriangle();
 
 	public int getCurrentGear();
 	public int getMaxGear();

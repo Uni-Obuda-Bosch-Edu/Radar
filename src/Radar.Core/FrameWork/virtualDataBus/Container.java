@@ -1,18 +1,18 @@
 package virtualDataBus;
 
+import Common.Point2D;
 import busInterface.*;
 
-import java.awt.*;
 import java.util.List;
 
 public class Container implements Engine_Out, Radar_Out, DriverInput_Out, Gearbox_Out, Wheels_Out, Public_In{
 
-	public void setRadarDetectedObject(Point nearestObjectPosition, Double relativeSpeed) {
+	public void setRadarDetectedObject(Point2D nearestObjectPosition, Double relativeSpeed) {
 		NearestObjectPosition = nearestObjectPosition;
 		RelativeSpeed = relativeSpeed;
 	}
 
-	public void setObjectsByTriangle(List<Point> objectsByTriangle) {
+	public void setObjectsByTriangle(List<Point2D> objectsByTriangle) {
 		ObjectsByTriangle = objectsByTriangle;
 	}
 
@@ -28,7 +28,7 @@ public class Container implements Engine_Out, Radar_Out, DriverInput_Out, Gearbo
 		return EngineToggleButtonState;
 	}
 
-	public Point getNearestObject() {
+	public Point2D getNearestObject() {
 		return NearestObjectPosition;
 	}
 
@@ -36,7 +36,7 @@ public class Container implements Engine_Out, Radar_Out, DriverInput_Out, Gearbo
 		return RelativeSpeed;
 	}
 
-	public List<Point> getObjectsByTriangle() {
+	public List<Point2D> getObjectsByTriangle() {
 		return ObjectsByTriangle;
 	}
 
@@ -337,9 +337,9 @@ public class Container implements Engine_Out, Radar_Out, DriverInput_Out, Gearbo
 	private int ServiceCode;
 
 	/*Radar*/
-	private Point NearestObjectPosition;
+	private Point2D NearestObjectPosition;
 	private double RelativeSpeed;
-	private List<Point> ObjectsByTriangle;
+	private List<Point2D> ObjectsByTriangle;
 	
 	/*Wheels*/
 	private double CenterOfXAxis;

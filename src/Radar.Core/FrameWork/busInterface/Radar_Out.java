@@ -1,8 +1,9 @@
 package busInterface;
-import java.awt.Point;
+import Common.Point2D;
+
 import java.util.List;
 
 public interface Radar_Out {
-    void setRadarDetectedObject(Point nearestObjectPosition, Double relativeSpeed);
-    void setObjectsByTriangle(List<Point> objectsByTriangle);
+    void setRadarDetectedObject(Point2D nearestObjectPosition, Double relativeSpeed);
+    void setObjectsByTriangle(List<Point2D> objectsByTriangle);
 }
